@@ -3,15 +3,16 @@
   margin-top: 1rem;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.079) 0px 3px 6px;
   border-radius: 20px;
-  max-width: 700px;
+
   margin: auto;
-  margin-top: 10%;
 }
 
 .month-details-container--header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 90%;
+  margin: auto;
 }
 
 .arrows-container {
@@ -41,4 +42,48 @@
   font-weight: 900;
   font-size: 17px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.318);
+}
+.fa-solid:hover {
+  transform: scale(1.2);
+  transition: transform 4ms ease-in;
+}
+/* Skeleton Loader CSS */
+.skeleton {
+  background-color: #565353;
+  border-radius: 4px;
+  margin: 10px 0;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .month-details-container {
+    width: 90% !important;
+  }
 }
