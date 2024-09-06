@@ -1,5 +1,10 @@
 import React, { CSSProperties, useEffect, useState } from "react";
 import "./ReactMultiDateRange.css";
+import {
+  MdOutlineKeyboardArrowLeft,
+  MdOutlineKeyboardArrowRight,
+} from "react-icons/md";
+import { FaInfo } from "react-icons/fa";
 
 type BeginDayOfWeek = "sunday" | "monday";
 
@@ -9,6 +14,7 @@ interface InputData {
   key: string;
   type: string;
   color: string;
+  cellTextColor?: string;
 }
 
 interface StaticDatePickerProps {
@@ -26,6 +32,7 @@ interface StaticDatePickerProps {
   borderColor?: string;
   containerStyle?: CSSProperties;
   width?: string;
+  guidHeaderColor?: string;
 }
 
 // Utility functions to handle date manipulations
@@ -57,6 +64,8 @@ const ReactMultiDateRange = ({
   borderColor,
   containerStyle,
   width,
+  guidHeaderColor
+  
 }: StaticDatePickerProps) => {
   const [currentMonth, setCurrentMonth] = useState<Date>(
     activeDate ?? new Date()
@@ -88,13 +97,14 @@ const ReactMultiDateRange = ({
     const weeks: JSX.Element[][] = [];
     const startOfCurrentMonth = startOfMonth(currentMonth);
     const endOfCurrentMonth = endOfMonth(currentMonth);
-
+const cellTextColor=textColor
     let currentDate = cloneDate(startOfCurrentMonth);
 
     while (currentDate <= endOfCurrentMonth) {
       let color = "transparent";
       let firstDayInRange = false;
       let lastDayInRange = false;
+         let textColor=cellTextColor;
       let rangeObj: InputData | null = null; // To store the range that contains the current day
 
       data.forEach((range) => {
@@ -109,6 +119,7 @@ const ReactMultiDateRange = ({
           firstDayInRange = isSameDay(start, currentDate);
           lastDayInRange = isSameDay(end, currentDate);
           color = range.color || "transparent";
+          textColor=range.cellTextColor as string,
           rangeObj = range; // Set the rangeObj to the current range
         }
       });
@@ -130,6 +141,7 @@ const ReactMultiDateRange = ({
             justifyContent: "center",
             alignItems: "center",
             margin: "3px 0",
+            
             backgroundColor: color,
             color: textColor,
             width: !firstDayInRange || !lastDayInRange ? "100%" : "70%",
@@ -220,10 +232,7 @@ const ReactMultiDateRange = ({
             style={{ backgroundColor: "transparent", borderWidth: 0 }}
           >
             <span>
-              <i
-                className="fa-solid fa-arrow-left"
-                style={{ color: textColor }}
-              ></i>
+              <MdOutlineKeyboardArrowLeft size={29} />
             </span>
           </button>
           <span
@@ -240,11 +249,8 @@ const ReactMultiDateRange = ({
             onClick={goToNextMonth}
             style={{ backgroundColor: "transparent", borderWidth: 0 }}
           >
-            <span>
-              <i
-                className="fa-solid fa-arrow-right"
-                style={{ color: textColor }}
-              ></i>
+             <span>
+              <MdOutlineKeyboardArrowRight size={29} />
             </span>
           </button>
         </div>
@@ -255,15 +261,13 @@ const ReactMultiDateRange = ({
           <div
             className="month-details-container--header-container"
             style={{
-              backgroundColor: theme === "light" ? "lightGray" : "#383838",
+              backgroundColor:guidHeaderColor?guidHeaderColor:"transparent",
               border: borderColor ? `1px solid ${borderColor}` : "none",
               padding: "10px",
               borderRadius: "10px",
             }}
           >
-            <i className="material-icons" style={{ color: "lightBlue" }}>
-              info
-            </i>
+               <FaInfo color="#49b4b8" size={22} style={{ marginRight: "3px" }} />
             <div className="place-middle">{GuildComponent}</div>
           </div>
         )}
