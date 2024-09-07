@@ -29,6 +29,7 @@ declare module 'react-multi-date-range' {
         containerStyle?: CSSProperties;
         width?: string;
         guidHeaderColor?: string;
+        guidComponentStyle?: CSSProperties
     }
 
     const ReactMultiDateRange: React.FC<StaticDatePickerProps>;

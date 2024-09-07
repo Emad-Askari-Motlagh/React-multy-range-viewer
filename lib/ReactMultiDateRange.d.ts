@@ -24,7 +24,8 @@ interface StaticDatePickerProps {
     containerStyle?: CSSProperties;
     width?: string;
     guidHeaderColor?: string;
+    guidComponentStyle?: CSSProperties;
 }
-declare const ReactMultiDateRange: ({ handleRangeClick, onShownDateChange, GuildComponent, loading, theme, activeDate, data, beginDayOfWeek, backgroundColor, textColor, borderColor, containerStyle, width, guidHeaderColor }: StaticDatePickerProps) => React.JSX.Element;
+declare const ReactMultiDateRange: ({ handleRangeClick, onShownDateChange, GuildComponent, loading, theme, activeDate, data, beginDayOfWeek, backgroundColor, textColor, borderColor, containerStyle, width, guidHeaderColor, guidComponentStyle }: StaticDatePickerProps) => React.JSX.Element;
 export default ReactMultiDateRange;
 //# sourceMappingURL=ReactMultiDateRange.d.ts.map

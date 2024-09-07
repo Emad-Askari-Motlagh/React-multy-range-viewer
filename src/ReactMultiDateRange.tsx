@@ -33,6 +33,7 @@ interface StaticDatePickerProps {
   containerStyle?: CSSProperties;
   width?: string;
   guidHeaderColor?: string;
+  guidComponentStyle?:CSSProperties
 }
 
 // Utility functions to handle date manipulations
@@ -64,7 +65,8 @@ const ReactMultiDateRange = ({
   borderColor,
   containerStyle,
   width,
-  guidHeaderColor
+  guidHeaderColor,
+  guidComponentStyle
   
 }: StaticDatePickerProps) => {
   const [currentMonth, setCurrentMonth] = useState<Date>(
@@ -232,7 +234,7 @@ const cellTextColor=textColor
             style={{ backgroundColor: "transparent", borderWidth: 0 }}
           >
             <span>
-              <MdOutlineKeyboardArrowLeft size={29} />
+              <MdOutlineKeyboardArrowLeft size={29} color={textColor}/>
             </span>
           </button>
           <span
@@ -250,22 +252,18 @@ const cellTextColor=textColor
             style={{ backgroundColor: "transparent", borderWidth: 0 }}
           >
              <span>
-              <MdOutlineKeyboardArrowRight size={29} />
+              <MdOutlineKeyboardArrowRight size={29} color={textColor}/>
             </span>
           </button>
         </div>
       </div>
 
-      <div>
+      <div style={guidComponentStyle}>
         {GuildComponent && (
           <div
+          
             className="month-details-container--header-container"
-            style={{
-              backgroundColor:guidHeaderColor?guidHeaderColor:"transparent",
-              border: borderColor ? `1px solid ${borderColor}` : "none",
-              padding: "10px",
-              borderRadius: "10px",
-            }}
+         
           >
                <FaInfo color="#49b4b8" size={22} style={{ marginRight: "3px" }} />
             <div className="place-middle">{GuildComponent}</div>
