@@ -258,9 +258,10 @@ const cellTextColor=textColor
         </div>
       </div>
 
-      <div style={guidComponentStyle}>
+      <div >
         {GuildComponent && (
           <div
+          style={guidComponentStyle}
           
             className="month-details-container--header-container"
          
